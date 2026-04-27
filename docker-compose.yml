@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: lasteaiakohad_postgres
+    environment:
+      POSTGRES_DB: lasteaiakohad
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  superset:
+    build:
+      context: .
+      dockerfile: docker/superset/Dockerfile
+    container_name: lasteaiakohad_superset
+    depends_on:
+      - postgres
+    environment:
+      SUPERSET_SECRET_KEY: "change-this-secret-key"
+    ports:
+      - "8088:8088"
+    volumes:
+      - superset_home:/app/superset_home
+    command: >
+      /bin/bash -c "
+      superset db upgrade &&
+      superset init &&
+      superset run -h 0.0.0.0 -p 8088
+      "
+
+volumes:
+  postgres_data:
+  superset_home:

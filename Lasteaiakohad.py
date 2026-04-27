@@ -2,10 +2,15 @@ import io
 import re
 import math
 import time
+
 import requests
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
+from pathlib import Path
+OUTPUT_DIR = Path("Outputs")
+OUTPUT_DIR.mkdir(exist_ok=True)
 
 # =========================================================
 # SEADED
@@ -1005,14 +1010,14 @@ population_compare_table = population_df.pivot_table(
 # =========================================================
 # 12) FAILID JA GRAAFIKUD
 # =========================================================
-population_df.to_csv("rakvere_rahvastiku_prognoos_2026_2035.csv", index=False, encoding="utf-8-sig")
-birth_forecast_df.to_csv("rakvere_synnid_2026_2035.csv", index=False, encoding="utf-8-sig")
-kinder_df.to_csv("rakvere_lasteaiavajadus_2026_2030.csv", index=False, encoding="utf-8-sig")
-summary_table.to_csv("rakvere_kokkuvottev_tabel.csv", index=False, encoding="utf-8-sig")
-yearly_compare_table.to_csv("rakvere_aastate_vordlus_tabel.csv", encoding="utf-8-sig")
-population_compare_table.to_csv("rakvere_rahvaarvu_vordlus_tabel.csv", encoding="utf-8-sig")
-migration_plot_df.to_csv("rakvere_rande_saldo_2015_2024.csv", index=False, encoding="utf-8-sig")
-birth_death_hist_df.to_csv("rakvere_synnid_surmad_2018_2024.csv", index=False, encoding="utf-8-sig")
+population_df.to_csv(OUTPUT_DIR / "rakvere_rahvastiku_prognoos_2026_2035.csv", index=False, encoding="utf-8-sig")
+birth_forecast_df.to_csv(OUTPUT_DIR / "rakvere_synnid_2026_2035.csv", index=False, encoding="utf-8-sig")
+kinder_df.to_csv(OUTPUT_DIR / "rakvere_lasteaiavajadus_2026_2030.csv", index=False, encoding="utf-8-sig")
+summary_table.to_csv(OUTPUT_DIR / "rakvere_kokkuvottev_tabel.csv", index=False, encoding="utf-8-sig")
+yearly_compare_table.to_csv(OUTPUT_DIR / "rakvere_aastate_vordlus_tabel.csv", encoding="utf-8-sig")
+population_compare_table.to_csv(OUTPUT_DIR / "rakvere_rahvaarvu_vordlus_tabel.csv", encoding="utf-8-sig")
+migration_plot_df.to_csv(OUTPUT_DIR / "rakvere_rande_saldo_2015_2024.csv", index=False, encoding="utf-8-sig")
+birth_death_hist_df.to_csv(OUTPUT_DIR / "rakvere_synnid_surmad_2018_2024.csv", index=False, encoding="utf-8-sig")
 
 print("\nKontroll: mitu rida igas stsenaariumis on?")
 print("\nBirth forecast:")
@@ -1042,7 +1047,7 @@ plt.ylabel("Saldo")
 plt.grid(True, axis="y", alpha=0.3)
 plt.legend()
 plt.tight_layout()
-plt.savefig("rakvere_rande_saldo_2015_2024.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_rande_saldo_2015_2024.png", dpi=200)
 plt.show()
 
 # Ajaloolised sünnid ja surmad
@@ -1057,7 +1062,7 @@ plt.ylabel("Arv")
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.tight_layout()
-plt.savefig("rakvere_synnid_surmad_2018_2024.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_synnid_surmad_2018_2024.png", dpi=200)
 plt.show()
 
 # Prognoositud sünnid
@@ -1083,7 +1088,7 @@ plt.ylabel("Sünnide arv")
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.tight_layout()
-plt.savefig("rakvere_synnid_2026_2035.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_synnid_2026_2035.png", dpi=200)
 plt.show()
 
 # Prognoositud sünnid ja surmad kahes paneelis
@@ -1131,7 +1136,7 @@ axes[1].grid(True, alpha=0.3)
 axes[1].legend()
 
 plt.tight_layout()
-plt.savefig("rakvere_synnid_surmad_prognoos_2026_2035.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_synnid_surmad_prognoos_2026_2035.png", dpi=200)
 plt.show()
 
 # Lasteaiakohad
@@ -1158,7 +1163,7 @@ plt.ylabel("Kohtade arv")
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.tight_layout()
-plt.savefig("rakvere_lasteaiakohad_2026_2030.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_lasteaiakohad_2026_2030.png", dpi=200)
 plt.show()
 
 # Rahvaarvu prognoos
@@ -1184,7 +1189,7 @@ plt.ylabel("Rahvaarv")
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.tight_layout()
-plt.savefig("rakvere_rahvaarvu_prognoos_2026_2035.png", dpi=200)
+plt.savefig(OUTPUT_DIR / "rakvere_rahvaarvu_prognoos_2026_2035.png", dpi=200)
 plt.show()
 
 print("\nFailid salvestatud:")
