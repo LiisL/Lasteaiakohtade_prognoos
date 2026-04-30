@@ -19,11 +19,10 @@ Projekti eesmärk on ehitada lihtne, kuid realistlik andmetöötluse pipeline, m
 
 # Andmeallikad  
 
-- Statistikaamet (Statistics Estonia)
+- Statistikaamet 
   - sündide arv
   - rahvaarv
   - ränne (sisse/välja)
-- (valikuline) hinnangulised lasteaia kohtade andmed
 
 ---
 
@@ -43,7 +42,7 @@ Andmetega tehakse järgmised sammud:
 
 - arvutatakse sündide trendid ajas  
 - arvutatakse rändesaldo (sisse − välja)  
-- hinnatakse lasteaiaealiste laste arv  
+- hinnatakse lasteaiaealiste laste arvu
 
  **Oluline loogika:**
 lasteaia_vajadus=sündide arv 3-6 aastat tagasi
